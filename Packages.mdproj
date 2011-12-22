@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ItemType>PackagingProject</ItemType>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2325159B-AE6D-4F84-AA70-A33082A52678}</ProjectGuid>
+    <Packages>
+      <Packages xmlns="">
+        <Package name="Mono Makefile Sources">
+          <Builder targetFile="MysqlPot-.tar.gz" format="MonoDevelop.Projects.FileFormat" ctype="SourcesZipPackageBuilder">
+            <ChildEntries>
+              <SolutionItemReference path="MysqlPot\MysqlPot.csproj" />
+            </ChildEntries>
+            <RootEntry path="MysqlPot.sln" id=":root:" />
+          </Builder>
+        </Package>
+        <Package name="Linux Binaries">
+          <Builder targetFile="MysqlPot-linux.tar.gz" platform="Linux" configuration="Debug|x86" ctype="BinariesZipPackageBuilder">
+            <ChildEntries>
+              <SolutionItemReference path="MysqlPot\MysqlPot.csproj" />
+            </ChildEntries>
+            <RootEntry path="MysqlPot.sln" id=":root:" />
+          </Builder>
+        </Package>
+        <Package name="Microsoft Windows Binaries">
+          <Builder targetFile="MysqlPot-windows.tar.gz" platform="Windows" configuration="Debug|x86" ctype="BinariesZipPackageBuilder">
+            <ChildEntries>
+              <SolutionItemReference path="MysqlPot\MysqlPot.csproj" />
+            </ChildEntries>
+            <RootEntry path="MysqlPot.sln" id=":root:" />
+          </Builder>
+        </Package>
+        <Package name="Tarball">
+          <Builder TargetDirectory="MysqlPot" DefaultConfiguration="Debug|x86" ctype="TarballDeployTarget">
+            <ChildEntries>
+              <SolutionItemReference path="MysqlPot\MysqlPot.csproj" />
+            </ChildEntries>
+            <RootEntry path="MysqlPot.sln" id=":root:" />
+          </Builder>
+        </Package>
+      </Packages>
+    </Packages>
+  </PropertyGroup>
+</Project>

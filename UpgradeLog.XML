@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="MysqlPot">
+</Property><Property Name="Projektmappendatei" Value="Z:\source_cs\MysqlPot\MysqlPot.sln">
+</Property><Property Name="Date" Value="Samstag, 22. Oktober 2011">
+</Property><Property Name="Time" Value="20:47">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="MysqlPot.sln" Description="Datei wurde erfolgreich als &quot;Z:\source_cs\MysqlPot\Backup\MysqlPot.sln&quot; gesichert">
+</Event><Event ErrorLevel="0" Project="MysqlPot" Source="MysqlPot\MysqlPot.csproj" Description="Projektdatei erfolgreich gesichert als Z:\source_cs\MysqlPot\Backup\MysqlPot\MysqlPot.csproj">
+</Event><Event ErrorLevel="0" Project="MysqlPot" Source="MysqlPot\Main.cs" Description="Datei erfolgreich gesichert als Z:\source_cs\MysqlPot\Backup\MysqlPot\Main.cs">
+</Event><Event ErrorLevel="0" Project="MysqlPot" Source="MysqlPot\AssemblyInfo.cs" Description="Datei erfolgreich gesichert als Z:\source_cs\MysqlPot\Backup\MysqlPot\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="MysqlPot" Source="MysqlPot\Server.cs" Description="Datei erfolgreich gesichert als Z:\source_cs\MysqlPot\Backup\MysqlPot\Server.cs">
+</Event><Event ErrorLevel="0" Project="MysqlPot" Source="MysqlPot\Mysql.cs" Description="Datei erfolgreich gesichert als Z:\source_cs\MysqlPot\Backup\MysqlPot\Mysql.cs">
+</Event><Event ErrorLevel="0" Project="MysqlPot" Source="MysqlPot\MysqlPot.csproj" Description="Projekt erfolgreich konvertiert">
+</Event><Event ErrorLevel="3" Project="MysqlPot" Source="MysqlPot\MysqlPot.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="MysqlPot.sln" Description="Die Projektmappe wurde erfolgreich konvertiert.">
+</Event><Event ErrorLevel="3" Project="" Source="MysqlPot.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="MysqlPot" Source="MysqlPot\MysqlPot.csproj" Description="Überprüfung abgeschlossen: Upgrade der Projektdateien nicht erforderlich.">
+</Event></UpgradeLog>
