@@ -88,8 +88,6 @@ namespace MysqlPot
             packet[offset++] = 0x02;
             packet[offset++] = 0x00;
 
-			Console.WriteLine("Writing server capabilities, upper two bytes to offset: " + offset);
-
             // hardcoded server capabilities (upper two bytes)
             packet[offset++] = 0xf;
             packet[offset++] = 0x80;
@@ -98,22 +96,13 @@ namespace MysqlPot
             packet[offset++] = (byte)pluginData.Length;
 			
 			
-			Console.WriteLine("Writing empty filler buffer (10 bytes) to offset: " + offset);
-
-			
             // copy filler buf
             packet = copyBytes(filler, packet, offset, false);
             offset += 10;
 
-
-			Console.WriteLine("Writing filler buffer (12 bytes) to offset: " + offset);
-
 			// copy filler buf
             packet = copyBytes(filler12, packet, offset, true);
             offset += 13;
-
-
-			Console.WriteLine("Writing plugin data (mysql_native_password) to offset: " + offset);
 			
 			// copy pluginData buf
             packet = copyBytes(getBytes(pluginData), packet, offset, true);
