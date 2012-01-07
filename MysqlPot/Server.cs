@@ -7,25 +7,31 @@ namespace MysqlPot
 {
 	public class Server
 	{
+
+        /*
+         * 
+         * variable area
+         * 
+         */
 		
 		private	TcpListener	m_socket = null;
-		private IPEndPoint m_ipEnd = null;
+		private bool		m_debug = false;
 		
 		/*
 		 * constructor for the server class
-		 * 
-		 * 
 		 */
-		public Server (int port)
+		public Server (int port, bool debug)
 		{
-			m_socket = new TcpListener(port);
-			m_ipEnd = new IPEndPoint(IPAddress.Any, port);
+
+			m_debug = debug;
+            IPAddress adr = IPAddress.Parse("127.0.0.1");
+			m_socket = new TcpListener(adr, port);
+			//m_ipEnd = new IPEndPoint(IPAddress.Any, port);
 		}
 		
 		
 		/*
 		 * starts the listerner
-		 * 
 		 */
 		public int start()
 		{
@@ -33,27 +39,22 @@ namespace MysqlPot
       		byte[] data = new byte[1024];
 			Mysql x = new Mysql();
 			
-      		m_socket.Start();
+
+            m_socket.Start();
       		Console.WriteLine("Waiting for a client...");
 
-     	 	TcpClient client = m_socket.AcceptTcpClient();
+            TcpClient client = m_socket.AcceptTcpClient();
       		NetworkStream ns = client.GetStream();
-
-      		string welcome = "Welcome to my test server";
-			System.Text.ASCIIEncoding enc = new System.Text.ASCIIEncoding();
-      		data = enc.GetBytes(welcome);
-   //   		ns.Write(data, 0, data.Length);
 
       		while(true)
       		{
+	      		Console.WriteLine("Stream caught...");
+				
          		data = new byte[1024];
-				String dataOut = "hi flake";
-      /*   		recv = ns.Read(data, 0, data.Length);
-         		if (recv == 0)
-           			break;
-       */
-				data = x.getPacketError(dataOut, 0, 100, 100);
-         		ns.Write(data, 0, dataOut.Length + 6);
+				
+				byte[] dataOut = x.getGreetingPacket(0);
+               
+                ns.Write(dataOut, 0, dataOut.Length);
 				break;
       		}
       

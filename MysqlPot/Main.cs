@@ -11,12 +11,23 @@ namespace MysqlPot
 	{
 		public static void Main (string[] args)
 		{
+			
+//			Mysql x = new Mysql();
+//			x.getGreetingPacket(100);
+			
+		
+			
 			Console.WriteLine ("Starting mysql pot....");
-			Server mysql = new Server(3306);
-			mysql.start();
+			Server mysqlServer = new Server(3306, true);
+			mysqlServer.start();
+			
 			
 		}	// main function
 		
 	}	// MainClass
 	
+
+// SALT fehlt
+
+
 }	// MysqlPot
