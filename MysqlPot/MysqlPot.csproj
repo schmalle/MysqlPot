@@ -45,9 +45,11 @@
     <Compile Include="Mysql.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Database.cs" />
+    <Compile Include="MysqlDefs.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <None Include="README.txt" />
+    <None Include="spec.txt" />
   </ItemGroup>
 </Project>

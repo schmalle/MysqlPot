@@ -14,16 +14,21 @@ namespace MysqlPot
          * 
          */
 		
+		enum State
+		{
+			NOT_CONNECTED = 1,
+			GREETING_PACKET_SEND = 2
+		}
+		
 		private	TcpListener	m_socket = null;
-		private bool		m_debug = false;
+		private int			m_state = (int)State.NOT_CONNECTED;
 		
 		/*
 		 * constructor for the server class
 		 */
-		public Server (int port, bool debug)
+		public Server (int port)
 		{
 
-			m_debug = debug;
             IPAddress adr = IPAddress.Parse("127.0.0.1");
 			m_socket = new TcpListener(adr, port);
 			//m_ipEnd = new IPEndPoint(IPAddress.Any, port);
@@ -35,9 +40,8 @@ namespace MysqlPot
 		 */
 		public int start()
 		{
-			int recv;
       		byte[] data = new byte[1024];
-			Mysql x = new Mysql();
+			Mysql x = new Mysql(0);
 			
 
             m_socket.Start();
@@ -48,14 +52,32 @@ namespace MysqlPot
 
       		while(true)
       		{
-	      		Console.WriteLine("Stream caught...");
+	      		
+				Console.WriteLine("Stream caught...");
 				
-         		data = new byte[1024];
+				if (m_state == (int)State.NOT_CONNECTED)
+				{
+					Console.WriteLine("Info: Mysqlpot in state NOT CONNECTED");
+					handleNotConnected(x, ns);
 				
-				byte[] dataOut = x.getGreetingPacket(0);
-               
-                ns.Write(dataOut, 0, dataOut.Length);
-				break;
+				}
+				else if (m_state == (int)State.GREETING_PACKET_SEND)
+				{
+					Console.WriteLine("Info: Mysqlpot in state GREETING_PACKET_SEND");
+					ns.Read(data, 0, 1024);
+					x.handleLoginPacket(data);
+					
+				}
+				else
+				{
+					Console.WriteLine("Info: Mysqlpot in unknown state");
+					break;
+				}
+				
+				
+				
+				
+ 				
       		}
       
 			ns.Close();
@@ -65,6 +87,22 @@ namespace MysqlPot
 			return 0;
 			
 		}	// start()
+		
+		
+		/**
+		 * handles the send of the greeting packet if not send already
+		 * 
+		 */
+		private void handleNotConnected(Mysql x, NetworkStream ns)
+		{				
+			byte[] dataOut = x.getGreetingPacket(0);
+            if (dataOut != null)
+			{	
+				m_state = (int)State.GREETING_PACKET_SEND;
+				ns.Write(dataOut, 0, dataOut.Length);
+			}
+		}	// handleNotConnected
+		
 		
 	}	// server class
 

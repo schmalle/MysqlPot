@@ -3,11 +3,13 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="MysqlPot/Server.cs">
     <Files>
       <File FileName="MysqlPot/Main.cs" Line="34" Column="1" />
-      <File FileName="MysqlPot/Server.cs" Line="20" Column="3" />
-      <File FileName="MysqlPot/Mysql.cs" Line="60" Column="57" />
+      <File FileName="MysqlPot/Server.cs" Line="61" Column="28" />
+      <File FileName="MysqlPot/Mysql.cs" Line="87" Column="37" />
       <File FileName="MysqlPot/Logger.cs" Line="1" Column="1" />
       <File FileName="MysqlPot/Database.cs" Line="1" Column="1" />
-      <File FileName="MysqlPot/README.txt" Line="1" Column="1" />
+      <File FileName="MysqlPot/README.txt" Line="6" Column="1" />
+      <File FileName="MysqlPot/spec.txt" Line="18" Column="10" />
+      <File FileName="MysqlPot/MysqlDefs.cs" Line="23" Column="62" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -29,14 +31,11 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/Users/flake/source_cs/MysqlPot/MysqlPot/Server.cs" line="32" />
-      <Breakpoint file="/Users/flake/source_cs/MysqlPot/MysqlPot/Mysql.cs" line="58" />
       <Breakpoint file="/Users/flake/source_cs/MysqlPot/MysqlPot/Main.cs" line="22" />
       <Breakpoint file="/Users/flake/source_cs/MysqlPot/MysqlPot/Main.cs" line="16" />
-      <Breakpoint file="/Users/flake/source_cs/MysqlPot/MysqlPot/Mysql.cs" line="98" />
-      <Breakpoint file="/Users/flake/source_cs/MysqlPot/MysqlPot/Mysql.cs" line="136" />
-      <Breakpoint file="/Users/flake/source_cs/MysqlPot/MysqlPot/Mysql.cs" line="135" />
-      <Breakpoint file="/Users/flake/source_cs/MysqlPot/MysqlPot/Mysql.cs" line="78" />
+      <Breakpoint file="/Users/flake/source_cs/MysqlPot/MysqlPot/Mysql.cs" line="67" />
+      <Breakpoint file="/Users/flake/source_cs/MysqlPot/MysqlPot/Mysql.cs" line="101" />
+      <Breakpoint file="/Users/flake/source_cs/MysqlPot/MysqlPot/Server.cs" line="39" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
