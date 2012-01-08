@@ -18,7 +18,7 @@ namespace MysqlPot
 		
 			
 			Console.WriteLine ("Starting mysql pot....");
-			Server mysqlServer = new Server(3306, true);
+			Server mysqlServer = new Server(3306);
 			mysqlServer.start();
 			
 			
