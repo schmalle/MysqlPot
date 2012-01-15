@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Net;
 using System.Net.Sockets;
 
@@ -17,21 +18,25 @@ namespace MysqlPot
 		enum State
 		{
 			NOT_CONNECTED = 1,
-			GREETING_PACKET_SEND = 2
+			GREETING_PACKET_SEND = 2,
+			FINISH = 666
 		}
 		
 		private	TcpListener	m_socket = null;
-		private int			m_state = (int)State.NOT_CONNECTED;
+		private State			m_state = State.NOT_CONNECTED;
+		private String		m_fileName = null;
+		private StreamWriter m_writer = null;
 		
 		/*
 		 * constructor for the server class
 		 */
-		public Server (int port)
+		public Server (int port, String fileName)
 		{
-
+			
+			m_fileName = fileName;
             IPAddress adr = IPAddress.Parse("127.0.0.1");
 			m_socket = new TcpListener(adr, port);
-			//m_ipEnd = new IPEndPoint(IPAddress.Any, port);
+			m_writer = File.CreateText(fileName);
 		}
 		
 		
@@ -41,31 +46,36 @@ namespace MysqlPot
 		public int start()
 		{
       		byte[] data = new byte[1024];
-			Mysql x = new Mysql(0);
+			Mysql x = new Mysql(0, m_writer);
 			
 
+   
+			while (true)
+			{
             m_socket.Start();
-      		Console.WriteLine("Waiting for a client...");
+
+				Console.WriteLine("Waiting for a client...");
 
             TcpClient client = m_socket.AcceptTcpClient();
       		NetworkStream ns = client.GetStream();
 
-      		while(true)
+      		while(m_state != State.FINISH)
       		{
 	      		
 				Console.WriteLine("Stream caught...");
 				
-				if (m_state == (int)State.NOT_CONNECTED)
+				if (m_state == State.NOT_CONNECTED)
 				{
 					Console.WriteLine("Info: Mysqlpot in state NOT CONNECTED");
 					handleNotConnected(x, ns);
 				
 				}
-				else if (m_state == (int)State.GREETING_PACKET_SEND)
+				else if (m_state == State.GREETING_PACKET_SEND)
 				{
 					Console.WriteLine("Info: Mysqlpot in state GREETING_PACKET_SEND");
 					ns.Read(data, 0, 1024);
 					x.handleLoginPacket(data);
+						m_state = State.FINISH;
 					
 				}
 				else
@@ -74,15 +84,18 @@ namespace MysqlPot
 					break;
 				}
 				
-				
-				
-				
+					
  				
       		}
       
 			ns.Close();
       		client.Close();
+				
       		m_socket.Stop();
+				m_state = State.NOT_CONNECTED;
+
+			}
+			
 			
 			return 0;
 			
@@ -98,7 +111,7 @@ namespace MysqlPot
 			byte[] dataOut = x.getGreetingPacket(0);
             if (dataOut != null)
 			{	
-				m_state = (int)State.GREETING_PACKET_SEND;
+				m_state = State.GREETING_PACKET_SEND;
 				ns.Write(dataOut, 0, dataOut.Length);
 			}
 		}	// handleNotConnected
