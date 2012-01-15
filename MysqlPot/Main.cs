@@ -9,16 +9,41 @@ namespace MysqlPot
 {
 	class MainClass
 	{
+		
+		/* define states for the server context */
+		enum State
+		{
+			NONE = 1,
+			PORT,
+			FILENAME
+		};
+		
+		
+		/**
+		 * 
+		 * 
+		 */
 		public static void Main (string[] args)
 		{
 			
-//			Mysql x = new Mysql();
-//			x.getGreetingPacket(100);
 			
-		
+			
+			//
+			// parse commandline
+			//
+			// -p port -f file
+			//
+			foreach( string s in args )
+			{
+				String parameter = s;
+				Console.WriteLine(s);
+			}
+			
+			
+			
 			
 			Console.WriteLine ("Starting mysql pot....");
-			Server mysqlServer = new Server(3306);
+			Server mysqlServer = new Server(3306, "/Users/flake/mysqlpot.log");
 			mysqlServer.start();
 			
 			

@@ -4,7 +4,7 @@ namespace MysqlPot
 {
 	public class Logger
 	{
-		public Logger ()
+		public Logger (String fileName)
 		{
 		}
 	}

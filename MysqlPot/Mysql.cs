@@ -11,6 +11,7 @@ namespace MysqlPot
 		// variable area 
 		private int	m_packetNumber = 0;
 		private MysqlDefs	m_mysqlDefs = null;
+		private StreamWriter m_writer = null;
 		
 		
 		/**
@@ -26,10 +27,11 @@ namespace MysqlPot
 		/**
 		 * constructor for the Mysql class
 		 */
-		public Mysql (int packetNumber)
+		public Mysql (int packetNumber, StreamWriter w)
 		{	
 			m_mysqlDefs = new MysqlDefs();
 			m_packetNumber = packetNumber;
+			m_writer = w;
 		}	// Mysql
 		
 
@@ -204,14 +206,17 @@ namespace MysqlPot
 		}	// getPacket
 		
 		
+		/**
+		 * 
+		 * 
+		 * 
+		 */
 		public void handleLoginPacket(byte[] dataIn)
 		{
 			// 3 byte packet laenge
 			// for the moment we ignore the upper two bytes
 			int length = dataIn[0];
-			
-			StringBuilder userName = new StringBuilder();
-			
+						
 			int packetNumber = dataIn[3];
 			
 			// allocate dummy buffer for the username
@@ -220,14 +225,12 @@ namespace MysqlPot
 			int runner = 0x24;
 			while (runner != dataIn.Length -1 && dataIn[runner] != 0x0)
 			{
-				userName.Append(dataIn[runner].ToString());
 				uNameBytes[runner-0x24] = dataIn[runner++];
 			}
 			
 			dataIn[runner-0x24] = 0x0;
 			
-			Console.WriteLine("Login try with username: " + System.Text.Encoding.Default.GetString(uNameBytes));
-			Console.WriteLine("Login try with username: " + userName.ToString());
+			Console.WriteLine("Login try with username("+ DateTime.Now.ToString("HH:mm:ss tt") + "): " + System.Text.Encoding.Default.GetString(uNameBytes));
 			
 			
 		} // handleLoginPacket
