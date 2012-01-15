@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+	<project name="Hello World" default="build" basedir=".">
+    	<description>The Hello World of build files.</description>
+        <property name="debug" value="true" overwrite="false" />
+        <target name="clean" description="remove all generated files">
+            <delete file="mysqlpot.exe" failonerror="false" />
+            <delete file="mysqlpot.exe.mdb" failonerror="false" />
+	</target>
+        <target name="build" description="compiles the source code">
+            <csc target="exe" output="mysqlpot.exe" debug="${debug}">
+                <sources>
+                    <includes name="*.cs" />
+                </sources>
+            </csc>
+        </target>
+    </project>
