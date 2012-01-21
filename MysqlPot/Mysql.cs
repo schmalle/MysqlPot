@@ -211,7 +211,7 @@ namespace MysqlPot
 		 * 
 		 * 
 		 */
-		public void handleLoginPacket(byte[] dataIn)
+		public void handleLoginPacket(byte[] dataIn, String clientIP)
 		{
 			// 3 byte packet laenge
 			// for the moment we ignore the upper two bytes
@@ -230,8 +230,10 @@ namespace MysqlPot
 			
 			dataIn[runner-0x24] = 0x0;
 			
-			Console.WriteLine("Login try with username("+ DateTime.Now.ToString("HH:mm:ss tt") + "): " + System.Text.Encoding.Default.GetString(uNameBytes));
+			String outStr = "Login from " + clientIP +  " try with username("+ DateTime.Now.ToString("HH:mm:ss tt") + "): " + System.Text.Encoding.Default.GetString(uNameBytes); 
 			
+			Console.WriteLine(outStr);
+			m_writer.WriteLine(outStr);
 			
 		} // handleLoginPacket
 		

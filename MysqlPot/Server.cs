@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
+using System.Reflection;
 
 
 namespace MysqlPot
@@ -22,10 +23,9 @@ namespace MysqlPot
 			FINISH = 666
 		}
 		
-		private	TcpListener	m_socket = null;
+		private	TcpListener		m_socket = null;
 		private State			m_state = State.NOT_CONNECTED;
-		private String		m_fileName = null;
-		private StreamWriter m_writer = null;
+		private StreamWriter 	m_writer = null;
 		
 		/*
 		 * constructor for the server class
@@ -33,7 +33,6 @@ namespace MysqlPot
 		public Server (int port, String fileName)
 		{
 			
-			m_fileName = fileName;
             IPAddress adr = IPAddress.Parse("127.0.0.1");
 			m_socket = new TcpListener(adr, port);
 			m_writer = File.CreateText(fileName);
@@ -54,11 +53,15 @@ namespace MysqlPot
 			{
             m_socket.Start();
 
-				Console.WriteLine("Waiting for a client...");
+			Console.WriteLine("Waiting for a client...");
 
             TcpClient client = m_socket.AcceptTcpClient();
       		NetworkStream ns = client.GetStream();
-
+			
+var pi = ns.GetType().GetProperty("Socket", BindingFlags.NonPublic | BindingFlags.Instance);
+var socketIP = ((Socket)pi.GetValue(ns, null)).RemoteEndPoint.ToString();
+Console.WriteLine(socketIP);				
+				
       		while(m_state != State.FINISH)
       		{
 	      		
@@ -74,7 +77,7 @@ namespace MysqlPot
 				{
 					Console.WriteLine("Info: Mysqlpot in state GREETING_PACKET_SEND");
 					ns.Read(data, 0, 1024);
-					x.handleLoginPacket(data);
+					x.handleLoginPacket(data, socketIP);
 						m_state = State.FINISH;
 					
 				}
@@ -95,10 +98,7 @@ namespace MysqlPot
 				m_state = State.NOT_CONNECTED;
 
 			}
-			
-			
-			return 0;
-			
+						
 		}	// start()
 		
 		

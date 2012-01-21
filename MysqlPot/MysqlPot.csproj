@@ -51,5 +51,6 @@
   <ItemGroup>
     <None Include="README.txt" />
     <None Include="spec.txt" />
+    <None Include="mysql.build" />
   </ItemGroup>
 </Project>

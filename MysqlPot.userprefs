@@ -1,21 +1,22 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="MysqlPot/Server.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MysqlPot/Mysql.cs">
     <Files>
-      <File FileName="MysqlPot/Main.cs" Line="34" Column="1" />
-      <File FileName="MysqlPot/Server.cs" Line="61" Column="28" />
-      <File FileName="MysqlPot/Mysql.cs" Line="87" Column="37" />
+      <File FileName="MysqlPot/Main.cs" Line="45" Column="49" />
+      <File FileName="MysqlPot/Server.cs" Line="38" Column="1" />
+      <File FileName="MysqlPot/Mysql.cs" Line="236" Column="31" />
       <File FileName="MysqlPot/Logger.cs" Line="1" Column="1" />
       <File FileName="MysqlPot/Database.cs" Line="1" Column="1" />
-      <File FileName="MysqlPot/README.txt" Line="6" Column="1" />
-      <File FileName="MysqlPot/spec.txt" Line="18" Column="10" />
-      <File FileName="MysqlPot/MysqlDefs.cs" Line="23" Column="62" />
+      <File FileName="MysqlPot/README.txt" Line="1" Column="1" />
+      <File FileName="MysqlPot/spec.txt" Line="1" Column="1" />
+      <File FileName="MysqlPot/MysqlDefs.cs" Line="1" Column="1" />
+      <File FileName="MysqlPot/mysql.build" Line="7" Column="67" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="MysqlPot" expanded="True">
-            <Node name="Server.cs" selected="True" />
+            <Node name="Mysql.cs" selected="True" />
           </Node>
         </State>
       </Pad>
@@ -31,11 +32,13 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/Users/flake/source_cs/MysqlPot/MysqlPot/Main.cs" line="22" />
-      <Breakpoint file="/Users/flake/source_cs/MysqlPot/MysqlPot/Main.cs" line="16" />
-      <Breakpoint file="/Users/flake/source_cs/MysqlPot/MysqlPot/Mysql.cs" line="67" />
-      <Breakpoint file="/Users/flake/source_cs/MysqlPot/MysqlPot/Mysql.cs" line="101" />
-      <Breakpoint file="/Users/flake/source_cs/MysqlPot/MysqlPot/Server.cs" line="39" />
+      <Breakpoint file="/Users/flake/source_cs/MysqlPot/MysqlPot/Mysql.cs" line="70" />
+      <Breakpoint file="/Users/flake/source_cs/MysqlPot/MysqlPot/Mysql.cs" line="104" />
+      <Breakpoint file="/Users/flake/source_cs/MysqlPot/MysqlPot/Mysql.cs" line="218" />
+      <Breakpoint file="/Users/flake/source_cs/MysqlPot/MysqlPot/Main.cs" line="47" />
+      <Breakpoint file="/Users/flake/source_cs/MysqlPot/MysqlPot/Main.cs" line="45" />
+      <Breakpoint file="/Users/flake/source_cs/MysqlPot/MysqlPot/Server.cs" line="40" />
+      <Breakpoint file="/Users/flake/source_cs/MysqlPot/MysqlPot/Server.cs" line="73" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
