@@ -27,13 +27,29 @@ namespace MysqlPot
 		private State			m_state = State.NOT_CONNECTED;
 		private StreamWriter 	m_writer = null;
 		
+		
+		public String getMyIP()
+		{
+			IPHostEntry host;
+			string localIP = "?";
+			host = Dns.GetHostEntry(Dns.GetHostName());
+			foreach (IPAddress ip in host.AddressList)
+			{
+			    if (ip.AddressFamily.ToString() == "InterNetwork")
+			    {
+			        localIP = ip.ToString();
+			    }
+			}
+			return localIP;			
+		}
+		
 		/*
 		 * constructor for the server class
 		 */
 		public Server (int port, String fileName)
 		{
 			
-            IPAddress adr = IPAddress.Parse("127.0.0.1");
+            IPAddress adr = IPAddress.Parse(getMyIP());
 			m_socket = new TcpListener(adr, port);
 			m_writer = File.CreateText(fileName);
 		}
@@ -58,9 +74,9 @@ namespace MysqlPot
             TcpClient client = m_socket.AcceptTcpClient();
       		NetworkStream ns = client.GetStream();
 			
-var pi = ns.GetType().GetProperty("Socket", BindingFlags.NonPublic | BindingFlags.Instance);
-var socketIP = ((Socket)pi.GetValue(ns, null)).RemoteEndPoint.ToString();
-Console.WriteLine(socketIP);				
+			var pi = ns.GetType().GetProperty("Socket", BindingFlags.NonPublic | BindingFlags.Instance);
+			var socketIP = ((Socket)pi.GetValue(ns, null)).RemoteEndPoint.ToString();
+			Console.WriteLine(socketIP);				
 				
       		while(m_state != State.FINISH)
       		{
