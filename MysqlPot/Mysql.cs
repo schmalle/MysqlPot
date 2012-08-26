@@ -238,7 +238,10 @@ namespace MysqlPot
 			String outStr = "Login from " + clientIP +  " try with username("+ DateTime.Now.ToString("HH:mm:ss tt") + "): " + System.Text.Encoding.Default.GetString(uNameBytes); 
 
 			EWSSender sender = new EWSSender();
-			sender.send(token, username, clientIP, "100", DateTime.Now.ToString("ddd MMM HH:mm:ss CEST yyyy"), "MySQL.Login", username, host); 
+
+			// yyyy-MM-dd HH:mm:ss
+
+			sender.send(token, username, clientIP, "100", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "MySQL.Login", username, host); 
 
 			Console.WriteLine(outStr);
 			m_writer.WriteLine(outStr);
