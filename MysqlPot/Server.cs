@@ -39,6 +39,10 @@ namespace MysqlPot
 		private String			m_fileName = "";
 		
 		
+		/*
+		 * calculate own IP address
+		 * 
+		 */
 		public String getMyIP()
 		{
 
@@ -55,8 +59,7 @@ namespace MysqlPot
 			    }
 			}
 
-			return "131.220.20.200";
-			//return localIP;	
+			return localIP;	
 
 */
 
@@ -212,7 +215,6 @@ namespace MysqlPot
 				
       		m_socket.Stop();
 			m_state = State.NOT_CONNECTED;
-
 						
 		}	// start()
 		
