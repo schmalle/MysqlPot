@@ -140,7 +140,12 @@ namespace MysqlPot
 			return dest;
 		}	// copyBytes
 		
-		
+
+		public byte getPacketNumber (byte[] data)
+		{
+			return data[3];
+		}
+
 		/**
 		 * converts an 32 bit value to a 3 byte array
 		 * @in: Int32
@@ -211,7 +216,7 @@ namespace MysqlPot
 		 * 
 		 * 
 		 */
-		public void handleLoginPacket(byte[] dataIn, String clientIP)
+		public void handleLoginPacket(byte[] dataIn, String clientIP, String token, String username, String host)
 		{
 			// 3 byte packet laenge
 			// for the moment we ignore the upper two bytes
@@ -231,13 +236,90 @@ namespace MysqlPot
 			dataIn[runner-0x24] = 0x0;
 			
 			String outStr = "Login from " + clientIP +  " try with username("+ DateTime.Now.ToString("HH:mm:ss tt") + "): " + System.Text.Encoding.Default.GetString(uNameBytes); 
-			
+
+			EWSSender sender = new EWSSender();
+			sender.send(token, username, clientIP, "100", DateTime.Now.ToString("ddd MMM HH:mm:ss CEST yyyy"), "MySQL.Login", username, host); 
+
 			Console.WriteLine(outStr);
 			m_writer.WriteLine(outStr);
 			
 		} // handleLoginPacket
-		
-		
+
+
+		/**
+
+			generates an OK packet
+
+		 */
+		public byte[] generateOKPacket (int packetNumber, int affectedRows)
+		{
+
+			Console.WriteLine("Info: Starting generation of OK packet with packetnumber " + packetNumber + " and affected rows: " + affectedRows);
+
+			byte[] packet = new byte[11];
+			byte[] lengthInPacket = convert32To3Byte(7);
+
+			packet = copyBytes(lengthInPacket, packet, 0, false);
+
+			packet[3] = (byte)packetNumber;	
+
+			packet[4] = 0x0;					// dummy byte	
+			packet[5] = (byte)affectedRows;		// affected rows
+
+			packet[6] = 0x2;					// server status	
+			packet[7] = 0x0;					// server status
+
+			packet[8] = 0x0;					// warnings
+			packet[9] = 0x0;					// warnings
+			packet[10] = 0x0;					// warnings
+
+
+			Console.WriteLine("Info: Generated OK packet with packetnumber " + packetNumber + " and affected rows: " + affectedRows);
+
+			return packet;
+
+		}	// sendOKPacket
+
+
+		/**
+		 * 
+		 * retrieve query command
+		 * 
+		 */
+		public byte[] handleQueryPacket(byte[] dataIn, String clientIP, String token, String username, String host)
+		{
+			// 3 byte packet laenge
+			// for the moment we ignore the upper two bytes
+			int length = dataIn[0];
+						
+			int packetNumber = dataIn[3];
+			
+			// allocate dummy buffer for the username
+			byte[] uNameBytes =  new byte[1024];
+			
+			int runner = 0x5;
+			while (runner != dataIn.Length -1 && dataIn[runner] != 0x0)
+			{
+				uNameBytes[runner-0x5] = dataIn[runner++];
+			}
+			
+			dataIn[runner-0x5] = 0x0;
+			
+			String outStr = "Query from " + clientIP +  " with command ("+ DateTime.Now.ToString("HH:mm:ss tt") + "): " + System.Text.Encoding.Default.GetString(uNameBytes); 
+
+			Console.WriteLine(outStr);
+			m_writer.WriteLine(outStr);
+
+			return uNameBytes;
+			
+		} // handleQueryPacket
+
+
+		public byte[] generateAnswerPacket (String queryString)
+		{
+			return null;
+		}
+
 		/*
 
 		   VERSION 4.1
@@ -277,6 +359,59 @@ namespace MysqlPot
  		  
 		  
 		*/
+
+
+		/*
+		 * gives an answer packet back based on the seen query !!!
+		 * 
+		 */
+		public byte[] getAnswerPacket (byte[] queryBytes, int packetNumber)
+		{
+			byte[] packetVer = {0x01, 0x00, 0x00, (byte)packetNumber , 0x01 , 0x27 , 0x00 , 0x00 , 0x02 , 0x03 , 0x64 , 0x65 , 0x66 , 0x00   
+			, 0x00 , 0x00 , 0x11 , 0x40 , 0x40 , 0x76 , 0x65 , 0x72 , 0x73 , 0x69 , 0x6f , 0x6e , 0x5f , 0x63 , 0x6f , 0x6d   
+			, 0x6d , 0x65 , 0x6e , 0x74 , 0x00 , 0x0c , 0x21 , 0x00 , 0x18 , 0x00 , 0x00 , 0x00 , 0xfd , 0x00 , 0x00 , 0x1f   
+			, 0x00 , 0x00 , 0x05 , 0x00 , 0x00 , 0x03 , 0xfe , 0x00 , 0x00 , 0x02 , 0x00 , 0x09 , 0x00 , 0x00 , 0x04 , 0x08   
+			, 0x28 , 0x55 , 0x62 , 0x75 , 0x6e , 0x74 , 0x75 , 0x29 , 0x05 , 0x00 , 0x00 , 0x05 , 0xfe , 0x00 , 0x00 , 0x02   
+			, 0x00};
+
+
+			String query = queryBytes.ToString ();
+			Console.WriteLine("Checking query " + query);
+
+			if (byteArrayCompare(getBytes("select @@version_comment"), queryBytes)) 
+			{
+				Console.WriteLine ("Info: Select Version packet detected...");
+				return packetVer;
+			} 
+			else 
+			{
+				Console.WriteLine("Info: Unknown SQL query found....");
+				return null;
+			}
+
+		}
+
+
+
+		private bool byteArrayCompare (byte[] shortArray, byte[] longArray)
+		{
+			if (shortArray.Length >= longArray.Length)
+				return false;
+
+			for (int runner = 0; runner <= shortArray.Length - 1; runner++) 
+			{
+				if (0x00 != (shortArray[runner] - longArray[runner]))
+				{
+					Console.WriteLine("Info(byteArrayCompare): Data not equal");
+					return false;
+				}
+			}
+
+			Console.WriteLine("Info(byteArrayCompare): Data equal");
+			return true;
+
+
+		}
 
 	}	// MySQL class
 }

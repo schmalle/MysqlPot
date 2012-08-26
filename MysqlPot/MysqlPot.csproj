@@ -46,11 +46,13 @@
     <Compile Include="Logger.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="MysqlDefs.cs" />
+    <Compile Include="EWSSender.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <None Include="README.txt" />
     <None Include="spec.txt" />
     <None Include="mysql.build" />
+    <None Include="config.txt" />
   </ItemGroup>
 </Project>

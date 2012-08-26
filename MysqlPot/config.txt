@@ -1,0 +1,2 @@
+server=https://www.t-sec-radar.de:9443/ews-0.1/alert/postSimpleMessage
+

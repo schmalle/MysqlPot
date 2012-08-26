@@ -4,5 +4,11 @@ MysqlPot - a mysql honeypot
 
 Status: Just dev code
 
+History:	
+
+21-01-2012: uploaded to git hub first working code, just handling the login handshake and the username
+26-08-2012: added finally better network code
+
+
 
 
