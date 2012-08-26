@@ -1,0 +1,6 @@
+Steps to install the code:
+
+go in Server.cs and fix your client IP
+
+Run in:
+
