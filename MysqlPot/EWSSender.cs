@@ -63,6 +63,11 @@ namespace MysqlPot
     }     // getMessage
 		
 	
+	
+	/*
+	 * send data to the early warning system of DTAG
+	 * 
+	 */ 
 	public void send(String token, String userName, String ip, String req, String time, String attackType, String ident, String host)
 	{
 
@@ -89,9 +94,6 @@ namespace MysqlPot
 			Console.WriteLine(responseFromServer);
 
 			response.Close();
-
-
-
 
 	}
 }
