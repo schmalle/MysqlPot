@@ -5,7 +5,6 @@ using System.Net.Sockets;
 using System.Reflection;
 
 
-
 /**
  * 
  * 
@@ -13,7 +12,7 @@ using System.Reflection;
  * */
 namespace MysqlPot
 {
-	public class Server
+	public class MySqlServer
 	{
 
         /*
@@ -37,6 +36,7 @@ namespace MysqlPot
 		private byte[]			data = new byte[1024];
 		private int				m_port = 3306;
 		private String			m_fileName = "";
+		private String			m_ip = null;
 		
 		
 		/*
@@ -45,8 +45,10 @@ namespace MysqlPot
 		 */
 		public String getMyIP()
 		{
+			if (m_ip != null)
+				return m_ip;
 
-			return "192.168.1.44";
+			return "192.168.1.36";
 /*
 			IPHostEntry host;
 			string localIP = "?";
@@ -69,8 +71,9 @@ namespace MysqlPot
 		/*
 		 * constructor for the server class
 		 */
-		public Server (int port, String fileName)
+		public MySqlServer (int port, String fileName, String ip)
 		{
+			m_ip = ip;
 			m_port = port;
 			m_fileName = fileName;
 			m_writer = File.CreateText(fileName);
@@ -115,8 +118,7 @@ namespace MysqlPot
 					Console.WriteLine("Info: Server connected...");
 				}
 
-
-			}
+			}	// while loop
 
 			Console.WriteLine("Info: Closing down as no client is connecting");
 			return false;

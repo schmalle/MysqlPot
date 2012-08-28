@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Reflection;
+
 
 /*
  * 
@@ -29,7 +27,30 @@ namespace MysqlPot
 		public static void Main (string[] args)
 		{
 
+			int port = 3306;
+			String logFile = "/Users/flake/mysqlpot.log";
+			String ip = null;
+
+
+			// lame parsing of command line parameters
+			if (args.Length >= 1)
+			{
+				port = Convert.ToInt32(args[0]);	
 			
+				if (args.Length >= 2)
+				{
+					logFile = args[1];	
+
+					if (args.Length >= 3)
+					{
+						ip = args[2];	
+					}				
+				
+				}						
+			
+			}
+
+
 			//
 			// parse commandline
 			//
@@ -41,20 +62,17 @@ namespace MysqlPot
 				Console.WriteLine(s);
 			}
 
-			String username = "UNAME";
-			String host = "www.";
-			String token = "YOU NEED IT";
-
-			Console.WriteLine ("Starting mysql pot....");
-			Server mysqlServer = new Server(3306, "/Users/flake/mysqlpot.log");
+			String token = "blah";
+			String username = "MYSQL-EMAILPLACE";
+			String host = "www.emailplaceng.de";
+			Console.WriteLine ("Starting mysql pot with port " + port + " and logfile " + logFile + " and IP " + ip);
+			Console.WriteLine ("Command line parameters: port(3306 default), logfile(/Users/flake/mysqlpot.log default) and IP to bind to...");
+			MySqlServer mysqlServer = new MySqlServer(port, logFile, ip);
 			mysqlServer.start(username, token, host);
-			
+
 		}	// main function
 		
 	}	// MainClass
-	
-
-// SALT fehlt
 
 
 }	// MysqlPot

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 	<project name="Hello World" default="build" basedir=".">
-    	<description>The Hello World of build files.</description>
-        <property name="debug" value="true" overwrite="false" />
+    	<description>NANT build file for Mysqlpot.</description>
+        <property name="debug" value="false" overwrite="false" />
         <target name="clean" description="remove all generated files">
             <delete file="mysqlpot.exe" failonerror="false" />
             <delete file="mysqlpot.exe.mdb" failonerror="false" />

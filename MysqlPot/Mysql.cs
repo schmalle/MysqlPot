@@ -141,6 +141,10 @@ namespace MysqlPot
 		}	// copyBytes
 		
 
+		/**
+		 * extracts the number of a packet
+		 * 
+		 */
 		public byte getPacketNumber (byte[] data)
 		{
 			return data[3];
