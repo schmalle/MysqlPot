@@ -5,9 +5,12 @@
         <target name="clean" description="remove all generated files">
             <delete file="mysqlpot.exe" failonerror="false" />
             <delete file="mysqlpot.exe.mdb" failonerror="false" />
-	</target>
+		</target>
         <target name="build" description="compiles the source code">
             <csc target="exe" output="mysqlpot.exe" debug="${debug}">
+            <references>
+              <include name="System.Configuration.dll" />
+          </references>
                 <sources>
                     <includes name="*.cs" />
                 </sources>
