@@ -31,6 +31,8 @@ namespace MysqlPot
 			String logFile = Config.LogFilename;
 			String ip = Config.IP;
 			String host = Config.Host;
+			String token = Config.Usertoken;
+			String username = Config.Username;
 
 			// lame parsing of command line parameters
 			if (args.Length >= 1)
@@ -62,10 +64,8 @@ namespace MysqlPot
 				Console.WriteLine(s);
 			}
 
-			String token = "blah";
-			String username = "MYSQL-EMAILPLACE";
 			Console.WriteLine ("Starting mysql pot with port " + port + " and logfile " + logFile + " and IP " + ip);
-			Console.WriteLine ("Command line parameters: port(3306 default), logfile(/Users/flake/mysqlpot.log default) and IP to bind to...");
+			Console.WriteLine ("Command line parameters: port(3306 default), logfile(" + Config.LogFilename + " default) and IP to bind to...");
 			MySqlServer mysqlServer = new MySqlServer(port, logFile, ip);
 			mysqlServer.start(username, token, host);
 
@@ -141,6 +141,38 @@ namespace MysqlPot
 				if (value == null){
 					// no entry found, use default
 					value = "www.emailplaceng.de";
+				}
+				return value; 
+			}
+   		}
+
+		/**
+ 		* 
+ 		*	Host name, will be used as target for Alerts
+ 		* 
+ 		**/
+   		public static String Username {
+       		get { 
+				String value = ConfigurationManager.AppSettings["server.username"];
+				if (value == null){
+					// no entry found, use default
+					value = "MYSQL-EMAILPLACE";
+				}
+				return value; 
+			}
+   		}
+
+				/**
+ 		* 
+ 		*	Host name, will be used as target for Alerts
+ 		* 
+ 		**/
+   		public static String Usertoken {
+       		get { 
+				String value = ConfigurationManager.AppSettings["server.token"];
+				if (value == null){
+					// no entry found, use default
+					value = "blah";
 				}
 				return value; 
 			}
