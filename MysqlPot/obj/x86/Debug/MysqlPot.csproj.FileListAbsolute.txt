@@ -1,0 +1,5 @@
+Z:\Google Drive\source_cs\MysqlPot\MysqlPot\bin\Debug\MysqlPot.exe.config
+Z:\Google Drive\source_cs\MysqlPot\MysqlPot\bin\Debug\MysqlPot.exe
+Z:\Google Drive\source_cs\MysqlPot\MysqlPot\bin\Debug\MysqlPot.pdb
+Z:\Google Drive\source_cs\MysqlPot\MysqlPot\obj\x86\Debug\MysqlPot.exe
+Z:\Google Drive\source_cs\MysqlPot\MysqlPot\obj\x86\Debug\MysqlPot.pdb

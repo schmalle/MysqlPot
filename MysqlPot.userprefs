@@ -1,26 +1,27 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="MysqlPot/Database.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MysqlPot/Main.cs">
     <Files>
-      <File FileName="MysqlPot/Main.cs" Line="2" Column="1" />
-      <File FileName="MysqlPot/Server.cs" Line="6" Column="1" />
-      <File FileName="MysqlPot/Mysql.cs" Line="432" Column="13" />
+      <File FileName="MysqlPot/Main.cs" Line="65" Column="24" />
+      <File FileName="MysqlPot/Server.cs" Line="74" Column="15" />
+      <File FileName="MysqlPot/Mysql.cs" Line="34" Column="17" />
       <File FileName="MysqlPot/spec.txt" Line="12" Column="32" />
       <File FileName="MysqlPot/mysql.build" Line="4" Column="44" />
       <File FileName="MysqlPot/README.txt" Line="15" Column="1" />
       <File FileName="MysqlPot/MysqlDefs.cs" Line="1" Column="1" />
       <File FileName="MysqlPot/INSTALL.txt" Line="17" Column="1" />
-      <File FileName="MysqlPot/EWSSender.cs" Line="1" Column="1" />
+      <File FileName="MysqlPot/EWSSender.cs" Line="78" Column="3" />
       <File FileName="MysqlPot/AssemblyInfo.cs" Line="28" Column="1" />
-      <File FileName="MysqlPot/Database.cs" Line="1" Column="1" />
+      <File FileName="MysqlPot/Database.cs" Line="13" Column="1" />
       <File FileName="MysqlPot/Logger.cs" Line="1" Column="1" />
       <File FileName="MysqlPot/config.txt" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="MysqlPot" expanded="True" selected="True">
+          <Node name="MysqlPot" expanded="True">
             <Node name="References" expanded="True" />
+            <Node name="Main.cs" selected="True" />
           </Node>
           <Node name="Packages" expanded="True" />
         </State>
