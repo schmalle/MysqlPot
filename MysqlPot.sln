@@ -1,40 +1,18 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MysqlPot", "MysqlPot\MysqlPot.csproj", "{9BFA8EE4-66F2-40A7-869E-76843C14BAB6}"
-EndProject
-Project("{9344bdbb-3e7f-41fc-a0dd-8665d75ee146}") = "Packages", "Packages.mdproj", "{2325159B-AE6D-4F84-AA70-A33082A52678}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2012 for Windows Desktop
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySqlPot", "MySqlPot\MySqlPot.csproj", "{7E2C87FE-2BBF-4E04-B3CF-02F333959BCC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|x86 = Debug|x86
-		Release|x86 = Release|x86
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2325159B-AE6D-4F84-AA70-A33082A52678}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{2325159B-AE6D-4F84-AA70-A33082A52678}.Release|x86.ActiveCfg = Release|Any CPU
-		{9BFA8EE4-66F2-40A7-869E-76843C14BAB6}.Debug|x86.ActiveCfg = Debug|x86
-		{9BFA8EE4-66F2-40A7-869E-76843C14BAB6}.Debug|x86.Build.0 = Debug|x86
-		{9BFA8EE4-66F2-40A7-869E-76843C14BAB6}.Release|x86.ActiveCfg = Release|x86
-		{9BFA8EE4-66F2-40A7-869E-76843C14BAB6}.Release|x86.Build.0 = Release|x86
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = MysqlPot\MysqlPot.csproj
-		Policies = $0
-		$0.DotNetNamingPolicy = $1
-		$1.DirectoryNamespaceAssociation = None
-		$1.ResourceNamePolicy = FileFormatDefault
-		$0.TextStylePolicy = $2
-		$2.inheritsSet = null
-		$2.scope = text/x-csharp
-		$0.CSharpFormattingPolicy = $3
-		$3.PropertyBraceStyle = NextLine
-		$3.PropertyGetBraceStyle = NextLine
-		$3.PropertySetBraceStyle = NextLine
-		$3.StatementBraceStyle = NextLine
-		$3.inheritsSet = Mono
-		$3.inheritsScope = text/x-csharp
-		$3.scope = text/x-csharp
+		{7E2C87FE-2BBF-4E04-B3CF-02F333959BCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E2C87FE-2BBF-4E04-B3CF-02F333959BCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E2C87FE-2BBF-4E04-B3CF-02F333959BCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E2C87FE-2BBF-4E04-B3CF-02F333959BCC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
