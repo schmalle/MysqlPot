@@ -102,20 +102,38 @@ namespace MysqlPot
 			while (runner-- != 0) 
 			{
 
-				readBytes = ns.Read (data, 0, 1024);
-				if (readBytes != 0)
-					return true;
-
-				System.Threading.Thread.Sleep(50);
-
-				if (m_socket.Server.Poll(1000, SelectMode.SelectRead) && m_socket.Server.Available == 0 )
+				try
 				{
-					Console.WriteLine("Info: Server disconnected...");
-					doSetup(m_port, m_fileName);
+					readBytes = ns.Read (data, 0, 1024);
+					if (readBytes != 0)
+						return true;
 				}
-				else
+				catch (Exception e)
 				{
-					Console.WriteLine("Info: Server connected...");
+                    Console.WriteLine("Info: Caught exception while waiting for network data....");
+                    Console.WriteLine(e.ToString());
+					return false;
+				}
+
+				System.Threading.Thread.Sleep(100);
+
+                try
+                {
+
+				    if (m_socket.Server.Poll(1000, SelectMode.SelectRead) && m_socket.Server.Available == 0 )
+				    {
+					    Console.WriteLine("Info: Server disconnected...");
+					    doSetup(m_port, m_fileName);
+				    }
+				    else
+				    {
+					    //Console.WriteLine("Info: Server connected...");
+				    }
+                }
+                catch (System.Net.Sockets.SocketException e)
+				{
+                    Console.WriteLine("Info: Caught SocketException  exception while polling / data....");
+					return false;
 				}
 
 			}	// while loop
@@ -124,11 +142,23 @@ namespace MysqlPot
 			return false;
 		}	// socketCheck
 
-		
+
+
+		/**
+		 *  start the listener, if one listener dies, create another one
+		 */
+		public void start (String username, String token, String host)
+		{
+			while (true)
+			{
+				startInternal(username, token, host);
+			}
+		}
+
 		/*
 		 * starts the listerner
 		 */
-		public void start(String username, String token, String host)
+		public void startInternal(String username, String token, String host)
 		{
 			Mysql x = new Mysql(0, m_writer);
 
