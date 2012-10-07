@@ -8,9 +8,9 @@ Compile:
 
 Run in:
 
-mono MysqlPot.exe Port Logile IP
+mono MysqlPot.exe Port Logile IP UserName Password
 
 Example:
 
-mono MysqlPot.exe 3306 /Users/flake/mysqlpot.log 192.168.1.44
+mono MysqlPot.exe 3306 /Users/flake/mysqlpot.log 192.168.1.44 username password
 
