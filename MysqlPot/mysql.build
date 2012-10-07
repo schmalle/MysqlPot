@@ -2,18 +2,20 @@
 	<project name="Hello World" default="build" basedir=".">
     	<description>NANT build file for Mysqlpot.</description>
         <property name="debug" value="false" overwrite="false" />
+        
         <target name="clean" description="remove all generated files">
             <delete file="mysqlpot.exe" failonerror="false" />
             <delete file="mysqlpot.exe.mdb" failonerror="false" />
-		</target>
+		    </target>
+        
         <target name="build" description="compiles the source code">
             <csc target="exe" output="mysqlpot.exe" debug="${debug}">
-            <references>
-              <include name="System.Configuration.dll" />
-          </references>
-                <sources>
-                    <includes name="*.cs" />
-                </sources>
+              <references>
+                <include name="System.Configuration.dll" />
+              </references>
+              <sources>
+                <includes name="*.cs" />
+              </sources>
             </csc>
         </target>
     </project>
