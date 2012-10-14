@@ -37,7 +37,15 @@ namespace MysqlPot
 			// lame parsing of command line parameters
 			if (args.Length >= 1)
 			{
-				port = Convert.ToInt32(args[0]);	
+				try
+				{
+					port = Convert.ToInt32(args[0]);
+				}
+				catch (System.FormatException e)
+				{
+					port = 3306;
+					Console.WriteLine("Info: Supplied port number was not valid. Defaulting to 3306");
+				}
 			
 				if (args.Length >= 2)
 				{
@@ -58,11 +66,16 @@ namespace MysqlPot
 						token = args[4];	
 					}
 
+					if (args.Length >= 6)
+					{
+						host = args[5];	
+					}
+
 				}						
 			
 			}
 
-			Console.WriteLine ("Starting mysql pot with port " + port + " and logfile " + logFile + " and IP " + ip);
+			Console.WriteLine ("Starting mysql pot with port " + port + " and logfile " + logFile + " and IP " + ip + " and username " + username + " and password " + token);
 			Console.WriteLine ("Command line parameters: port logfile ip username password host");
 			MySqlServer mysqlServer = new MySqlServer(port, logFile, ip);
 			mysqlServer.start(username, token, host);
@@ -76,14 +89,16 @@ namespace MysqlPot
  	*	Helper Class to read configuration entries from <<appname>>.exe.config 
  	* 
  	**/
-	public static class Config {
+	public static class Config 
+	{
 
 		/**
  		* 
  		*	Port number to "bind" mysql daemon on 
  		* 
  		**/
-   		public static int Port {
+   		public static int Port 
+		{
        		get 
 			{ 
 				int port = 3306;
@@ -142,11 +157,13 @@ namespace MysqlPot
  		**/
    		public static String Host 
         {
-       		get { 
+       		get 
+			{ 
 				String value = ConfigurationManager.AppSettings["mysql.host"];
-				if (value == null){
+				if (value == null)
+				{
 					// no entry found, use default
-					value = "<no_host>";
+					value = "unknown_host";
 				}
 				return value; 
 			}
