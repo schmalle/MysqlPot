@@ -45,11 +45,10 @@ namespace MysqlPot
 		 */
 		public String getMyIP()
 		{
+			// check if a IP was passed via command line, if so, return this one
 			if (m_ip != null)
 				return m_ip;
 
-			return "192.168.1.36";
-/*
 			IPHostEntry host;
 			string localIP = "?";
 			host = Dns.GetHostEntry(Dns.GetHostName());
@@ -61,9 +60,7 @@ namespace MysqlPot
 			    }
 			}
 
-			return localIP;	
-
-*/
+			return localIP;
 
 		}
 
@@ -86,9 +83,19 @@ namespace MysqlPot
 		 */
 		private void doSetup (int port, String fileName)
 		{
-            IPAddress adr = IPAddress.Parse(getMyIP());
-			m_socket = new TcpListener(adr, port);
-		}
+			try
+			{
+				IPAddress adr = IPAddress.Parse (getMyIP ());
+				m_socket = new TcpListener (adr, port);
+			} 
+			catch (Exception e)
+			{
+				Console.WriteLine("Error(doSetup): Unable to create a socket.");
+				Console.WriteLine("Error trace: " + e.ToString());
+				m_socket = null;
+
+			}
+		}	// doSetup	
 
 		/*
 		 * socketCheck wait 50 * 100 milli seconds before quiting,
