@@ -1,14 +1,16 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="MysqlPot/INSTALL.txt">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MysqlPot/Main.cs">
     <Files>
       <File FileName="MysqlPot/config.txt" Line="1" Column="1" />
       <File FileName="MysqlPot/app.config" Line="1" Column="1" />
-      <File FileName="MysqlPot/Main.cs" Line="66" Column="87" />
-      <File FileName="MysqlPot/MysqlPot.exe.config" Line="6" Column="38" />
       <File FileName="MysqlPot/Database.cs" Line="1" Column="1" />
       <File FileName="MysqlPot/INSTALL.txt" Line="11" Column="51" />
       <File FileName="MysqlPot/Logger.cs" Line="1" Column="1" />
+      <File FileName="MysqlPot/MysqlDefs.cs" Line="1" Column="1" />
+      <File FileName="MysqlPot/README.txt" Line="5" Column="38" />
+      <File FileName="MysqlPot/mysql.build" Line="1" Column="1" />
+      <File FileName="MysqlPot/Main.cs" Line="166" Column="27" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
