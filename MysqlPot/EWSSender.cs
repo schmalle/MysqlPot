@@ -28,7 +28,12 @@ namespace MysqlPot
 	public String getMessage(String token, String userName, String ip, String req, String time, String attackType, String ident, String host) 
 	{
  
-        String message =
+			Console.WriteLine("Info(getMessage): Generating message for user: " + userName + " and token: " + token);
+			Console.WriteLine("Info(getMessage):                        ip: "+ ip + " request: " + req + " ident: " + ident);
+			Console.WriteLine("Info(getMessage)                         and host: " + host);
+
+
+        	String message =
 
                 "<EWS-SimpleMessage version=\"1.0\">\n" +
                         "        <Authentication>\n" +
