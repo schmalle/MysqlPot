@@ -2,6 +2,8 @@ MysqlPot - a mysql honeypot
 
 (c) 2011 - 2012 by Markus "Flake" Schmall
 
+Some code additions by Lutz Wischmann
+
 Status: Just dev code
 
 History:	
